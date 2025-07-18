@@ -1,5 +1,4 @@
 
-
 int main()
 {
 
@@ -29,7 +28,7 @@ int main()
 
 	auto MHA_Weights = Functions::Concat(Weights, 0);
 
-	MultiheadAttention<float> MHA(SeqLen, ModelSize, NumHead, false, false);
+	MultiheadAttention<float> MHA(SeqLen, ModelSize, NumHead, false, true);
 	MHA.SetWeights(MHA_Weights);
 
 
