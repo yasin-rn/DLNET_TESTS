@@ -13,15 +13,17 @@ int main()
 	Functions::FillWithCoeff(Weights2D, 0.1f, 0.2f, 0.3f);
 
 	Tensor<float> Image = Image2D.Reshape({ BatchSize,InChannels,InH,InW });
-	Tensor<float> Weights = Weights2D.Reshape({ OutChannels,InChannels,KernelSize,KernelSize });
+	Tensor<float> Weights = Weights2D.Reshape({ OutChannels , InChannels , KernelSize,KernelSize });
 
 	std::cout << "Image:\n" << Image.ToString() << "\n\n";
 	std::cout << "Weights:\n" << Weights.ToString() << "\n\n";
 
-	Convolution<float> ConvolutinLayer(InChannels, OutChannels, KernelSize);
+	Convolution<float> ConvolutinLayer(InChannels, OutChannels, KernelSize, 1, 2);
 	ConvolutinLayer.SetWeights(Weights);
 
-	Tensor<float> Output = ConvolutinLayer.Forward(Image);
+	const auto& Output = ConvolutinLayer.Forward(Image);
 	std::cout << "Output:\n" << Output.ToString() << "\n\n";
 
+
+	return 0;
 }
